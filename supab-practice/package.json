@@ -24,6 +24,8 @@
     "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
+    "@internationalized/date": "^3.5.5",
+    "@nextui-org/react": "^2.4.8",
     "@prisma/client": "^5.19.1",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -31,6 +33,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "eslint-config-prettier": "^9.1.0",
+    "framer-motion": "^11.7.0",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prisma": "^5.19.1",
