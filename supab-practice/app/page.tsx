@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PostType from "./types";
+import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem, Button} from "@nextui-org/react";
 
 const fetchAllBlogs = async () => {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -14,11 +15,21 @@ export default async function Home() {
 
   return (
     <main className="w-full h-full">
-      <div className="md:w-2/4 sm:w-3/4 m-auto p-4 my-5 rounded-lg bg-blue-900 drop-shadow-xl">
-        <h1 className="text-slate-200 text-center text-2xl font-extrabold">
-          Full Stack Blog 📝
-        </h1>
-      </div>
+      <Navbar position="static">
+        <NavbarBrand>
+          <p className="font-bold">Supabase-Practice</p>
+        </NavbarBrand>
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          <NavbarItem>
+            <Link href="#">Content1</Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <Button variant="shadow" radius="full">Sign Up</Button>
+          </NavbarItem>
+        </NavbarContent>
+      </Navbar>
       {/* Link */}
       <div className="flex my-5">
         <Link
