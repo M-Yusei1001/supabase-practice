@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PostType from "./types";
-import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem, Button} from "@nextui-org/react";
+import Header from "@/app/header";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@nextui-org/react";
 
 const fetchAllBlogs = async () => {
   const res = await fetch(`http://localhost:3000/api/blog`, {
@@ -15,60 +22,33 @@ export default async function Home() {
 
   return (
     <main className="w-full h-full">
-      <Navbar position="static">
-        <NavbarBrand>
-          <p className="font-bold">Supabase-Practice</p>
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
-            <Link href="#">Content1</Link>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <Button variant="shadow" radius="full">Sign Up</Button>
-          </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-      {/* Link */}
-      <div className="flex my-5">
-        <Link
-          href={"/blog/add"}
-          className=" md:w-1/6 sm:w-2/4 text-center rounded-md p-2 m-auto bg-slate-300 font-semibold"
-        >
-          ブログ新規作成
-        </Link>
-      </div>
+      <Button color="primary" radius="full" className="flex mx-auto">
+        <Link href={"/blog/add"}>新規作成</Link>
+      </Button>
 
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className="w-full mx-auto flex flex-col items-center">
         {posts.map((post: PostType) => {
           return (
-            <div
-              key={post.id}
-              className="w-3/4 p-4 rounded-md mx-3 my-2 bg-slate-300 flex flex-col justify-center"
-            >
-              <div className="flex items-center my-3">
+            <Card key={post.id} className="flex my-4 p-4 w-1/2">
+              <CardHeader>
+                <h2 className="mr-auto font-semibold">{post.titile}</h2>
+                <Button color="primary" radius="full">
+                  <Link href={`/blog/edit/${post.id}`}>編集</Link>
+                </Button>
+              </CardHeader>
+              <CardBody>
                 <div className="mr-auto">
-                  <h2 className="mr-auto font-semibold">{post.titile}</h2>
+                  <h2>{post.description}</h2>
                 </div>
-                <Link
-                  href={`/blog/edit/${post.id}`}
-                  className="px-4 py-1 text-center text-xl bg-slate-900 rounded-md font-semibold text-slate-200"
-                >
-                  編集
-                </Link>
-              </div>
-
-              <div className="mr-auto my-1">
-                <blockquote className="font-bold text-slate-700">
-                  {new Date(post.date).toDateString()}
-                </blockquote>
-              </div>
-
-              <div className="mr-auto my-1">
-                <h2>{post.description}</h2>
-              </div>
-            </div>
+              </CardBody>
+              <CardFooter>
+                <div>
+                  <blockquote className="font-bold text-slate-700">
+                    {new Date(post.date).toDateString()}
+                  </blockquote>
+                </div>
+              </CardFooter>
+            </Card>
           );
         })}
       </div>
