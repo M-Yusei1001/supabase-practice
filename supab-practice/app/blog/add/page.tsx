@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
+import { Textarea } from "@nextui-org/react";
 
 const postBlog = async (
   titile: string | undefined,
@@ -42,7 +43,7 @@ function Add() {
   };
 
   return (
-    <div className="bg-slate-400 pb-10">
+    <div className="pb-10">
       <Toaster />
       <div className="container mx-auto flex">
         <div className="flex flex-col justify-center items-center m-auto">
@@ -50,6 +51,10 @@ function Add() {
             ブログ新規作成 🚀
           </p>
           <form onSubmit={handleSubmit}>
+            <Textarea
+              label="タイトル"
+              placeholder="タイトルを入力"
+            />
             <input
               ref={titleRef}
               placeholder="タイトルを入力"

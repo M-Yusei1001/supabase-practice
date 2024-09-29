@@ -1,6 +1,5 @@
 import Link from "next/link";
 import PostType from "./types";
-import Header from "@/app/header";
 import {
   Button,
   Card,
