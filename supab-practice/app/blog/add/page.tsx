@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { FormEvent, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
 import { Button, Input, Textarea } from "@nextui-org/react";
@@ -47,22 +47,26 @@ function Add() {
     <div className="pb-10">
       <Toaster />
       <div className="w-full">
-        <div className="container mx-auto py-4 text-center ">
+        <div className="container mx-auto py-4 text-center">
           <p className="text-2xl text-gray-600 font-bold p-4">ブログ新規作成</p>
           <form onSubmit={handleSubmit}>
             <Input
+              type="text"
+              name="title"
               className="p-4"
               ref={titleRef}
               label="タイトル"
               placeholder="タイトルを入力"
             />
             <Textarea
+              type="text"
+              name="description"
               className="p-4"
               ref={descriptionRef}
               label="内容"
               placeholder="内容を入力"
             />
-            <Button radius="full" color="primary">
+            <Button type="submit" radius="full" color="primary">
               投稿
             </Button>
           </form>

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
+import { Button, Input, Textarea } from "@nextui-org/react";
 
 const editBlog = async (
   id: number,
@@ -97,35 +98,34 @@ function Edit({ params }: { params: { id: number } }) {
   return (
     <>
       <Toaster />
-      <div className="w-full m-auto flex my-4">
-        <div className="flex flex-col justify-center items-center m-auto">
+      <div className="w-full">
+        <div className="flex container mx-auto py-4 justify-center">
           <p className="text-2xl text-slate-200 font-bold p-3">
             ブログの編集 🚀
           </p>
-          <form>
-            <input
-              ref={titleRef}
-              placeholder="タイトルを入力"
+          <form onSubmit={handleSubmit}>
+            <Input
               type="text"
-              className="rounded-md px-4 w-full py-2 my-2"
+              name="title"
+              className="p-4"
+              ref={titleRef}
+              label="タイトル"
+              placeholder="タイトルを入力"
             />
-            <textarea
+            <Textarea
+              type="text"
+              name="description"
+              className="p-4"
               ref={descriptionRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            ></textarea>
-            <button
-              onClick={handleSubmit}
-              className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100"
-            >
+              label="内容"
+              placeholder="内容を入力"
+            />
+            <Button type="submit" color="primary" radius="full" className="p-4">
               更新
-            </button>
-            <button
-              onClick={handleDelete}
-              className="ml-2 font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg m-auto hover:bg-slate-100"
-            >
+            </Button>
+            <Button color="danger" radius="full" className="p-4">
               削除
-            </button>
+            </Button>
           </form>
         </div>
       </div>
