@@ -47,7 +47,7 @@ const getBlogById = async (id: number) => {
   }
 };
 
-function Edit({ params }: { params: { id: number } }) {
+export default function Edit({ params }: { params: { id: number } }) {
   const router = useRouter();
   //useRefはrefを付けた属性の値を取得できる
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -99,9 +99,9 @@ function Edit({ params }: { params: { id: number } }) {
     <>
       <Toaster />
       <div className="w-full">
-        <div className="flex container mx-auto py-4 justify-center">
-          <p className="text-2xl text-slate-200 font-bold p-3">
-            ブログの編集 🚀
+        <div className="flex flex-col container mx-auto py-4 text-center justify-center max-w-lg">
+          <p className="text-2xl text-gray-600 font-bold p-3">
+            ブログの編集
           </p>
           <form onSubmit={handleSubmit}>
             <Input
@@ -120,10 +120,10 @@ function Edit({ params }: { params: { id: number } }) {
               label="内容"
               placeholder="内容を入力"
             />
-            <Button type="submit" color="primary" radius="full" className="p-4">
+            <Button type="submit" color="primary" radius="full" className="m-4">
               更新
             </Button>
-            <Button color="danger" radius="full" className="p-4">
+            <Button type="button" onClick={handleDelete} color="danger" radius="full" className="m-4">
               削除
             </Button>
           </form>
@@ -132,5 +132,3 @@ function Edit({ params }: { params: { id: number } }) {
     </>
   );
 }
-
-export default Edit;
